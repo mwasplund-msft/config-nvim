@@ -38,6 +38,10 @@
       "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
+    "mason-conform": {
+      "rev": "045065954f2e9d0acfb0bf38e905e3cf6f1e5b67",
+      "src": "https://github.com/LittleEndianRoot/mason-conform"
+    },
     "mason-lspconfig.nvim": {
       "rev": "0a695750d747db1e7e70bcf0267ef8951c95fc83",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"

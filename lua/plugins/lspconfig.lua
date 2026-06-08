@@ -27,6 +27,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--  For example, in C this would take you to the header.
 		map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+		map("grk", vim.lsp.buf.hover, "[G]oto [H]over")
+
 		-- The following two autocommands are used to highlight references of the
 		-- word under your cursor when your cursor rests there for a little while.
 		--    See `:help CursorHold` for information about when this is executed
@@ -102,7 +104,7 @@ local servers = {
 			navic.attach(client, bufnr)
 		end,
 	},
-	-- gopls = {},
+	gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
 	--
@@ -170,6 +172,7 @@ require("mason").setup({})
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
 	-- You can add other tools here that you want Mason to install
+	"black",
 	"clang-format",
 	"prettier",
 	"prettierd",
