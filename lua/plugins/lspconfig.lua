@@ -92,12 +92,13 @@ vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 local servers = {
 	clangd = {
 		cmd = {
-			-- "rr",
-			-- "record",
-			-- "/home/mwasplund/repos/llvm-project/build/bin/clangd",
+			--"rr",
+			--"record",
+			--"/home/mwasplund/repos/llvm-project/build/bin/clangd",
 			"/usr/bin/clangd-22",
 			"--experimental-modules-support",
-			-- "--log=verbose",
+			-- "--bsp=/home/mwasplund/repos/soup/out/cpp/local/soup-bsp/0.1.0/J_HqSstV55vlb-x6RWC_hLRFRDU/bin/soup-bsp",
+			--"--log=verbose",
 			-- other flags like "--background-index", "--clang-tidy"
 		},
 		on_attach = function(client, bufnr)
@@ -178,6 +179,8 @@ vim.list_extend(ensure_installed, {
 	"prettierd",
 	"stylua",
 	"csharpier",
+	"goimports",
+	"gofumpt",
 })
 
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -187,10 +190,21 @@ for name, server in pairs(servers) do
 	vim.lsp.enable(name)
 end
 
+vim.filetype.add({
+	extension = {
+		wren = "wren",
+	},
+})
+vim.lsp.config("wren_lsp", {
+	cmd = { "/home/mwasplund/Downloads/wren-lsp-linux-x86_64" },
+	filetypes = { "wren" },
+})
+vim.lsp.enable("wren_lsp")
+
 -- vim.lsp.config("soup-bsp", {
---	cmd = {
---		"/home/mwasplund/repos/soup/out/cpp/local/soup-bsp/0.1.0/J_HqSstV55vlb-x6RWC_hLRFRDU/bin/soup-bsp",
---	},
---	filetypes = { "sml" },
---})
+-- 	cmd = {
+-- 		"/home/mwasplund/repos/soup/out/cpp/local/soup-bsp/0.1.0/J_HqSstV55vlb-x6RWC_hLRFRDU/bin/soup-bsp",
+-- 	},
+-- 	filetypes = { "sml" },
+-- })
 -- vim.lsp.enable("soup-bsp")
